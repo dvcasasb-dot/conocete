@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CONÓCETE · Conocer cómo te sientes también es cuidarte</title>
+<meta name="description" content="Recorrido interactivo de autoconocimiento emocional para estudiantes de grado décimo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="top">
+  <button class="logo" data-go="home">CONÓCETE</button>
+  <nav aria-label="Principal"><button data-go="home">Inicio</button><button data-go="resources">Recursos y ayuda</button><button data-go="stats">Datos</button></nav>
+</header>
+
+<main>
+<!-- 1. PORTADA -->
+<section id="home" class="screen active">
+  <h1 tabindex="-1">CONÓCETE</h1>
+  <div class="hero" aria-hidden="true"><span class="f f1">😐</span><span class="f f2">😊</span><span class="f f3">😔</span><div class="mascot big" data-mood="calm"></div><span class="bubble-q">?</span><span class="sp s1">✨</span><span class="sp s2">💜</span><span class="sp s3">⭐</span></div>
+  <p class="lead">Conocer cómo te sientes también es cuidarte.</p>
+  <div class="center"><button class="btn big" data-go="pick">COMENZAR</button></div>
+  <p class="note">Es anónimo: no pedimos tu nombre. Solo si tú lo aceptas, tus respuestas se guardan sin identificarte para el estudio. No es un diagnóstico médico.</p>
+</section>
+
+<!-- 2. BIENVENIDA Y ELECCIÓN DE ASPECTOS -->
+<section id="pick" class="screen">
+  <h2 tabindex="-1">¡Bienvenido/a!</h2>
+  <p>Antes de comenzar, recuerda que <b>no hay respuestas buenas o malas</b>. Responde según cómo te has sentido últimamente.</p>
+  <h3>¿Sobre qué quieres contestar? 🎯</h3>
+  <p class="hint">Dale clic a los que te sientas más cómodo/a (puedes elegir varios).</p>
+  <div id="aspects" class="aspects"></div>
+  <label class="consent"><input type="checkbox" id="consent"> Acepto que mis respuestas se guarden de forma <b>anónima</b> (sin nombre) para el estudio del proyecto de grado.</label>
+  <div class="row"><button class="btn ghost" data-go="home">Atrás</button><button class="btn" id="start" disabled>Empezar</button></div>
+</section>
+
+<!-- 3. PREGUNTAS -->
+<section id="quiz" class="screen">
+  <div class="prog"><div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="bar"></i></div><span id="count"></span></div>
+  <div class="qhead"><div class="mascot sm" data-mood="calm"></div><p id="qaspect" class="chip"></p></div>
+  <h2 id="qtext" tabindex="-1"></h2>
+  <div id="opts" class="opts"></div>
+  <div class="row"><button class="btn ghost" id="prev">Anterior</button></div>
+</section>
+
+<!-- 4. RESULTADO -->
+<section id="result" class="screen"><div id="resultBox"></div></section>
+
+<!-- 5. RECURSOS Y AYUDA -->
+<section id="resources" class="screen">
+  <h2 tabindex="-1">Recursos y ayuda</h2>
+  <p>Pedir ayuda también es una forma de valentía. Estas líneas son gratuitas y puedes usarlas en cualquier momento.</p>
+  <div class="alert"><b>¿Estás en peligro o piensas hacerte daño?</b> Llama ya al <a href="tel:123">123</a> o cuéntaselo ahora mismo a un adulto cerca de ti.</div>
+  <ul class="lines">
+    <li><a href="tel:106"><b>106</b><span>Línea de salud mental de Bogotá · 24 horas</span></a></li>
+    <li><a href="tel:192"><b>192 opción 4</b><span>Línea nacional de salud mental del Ministerio de Salud</span></a></li>
+    <li><a href="tel:123"><b>123</b><span>Línea de emergencias</span></a></li>
+    <li><a href="tel:141"><b>141</b><span>ICBF · protección de niños, niñas y adolescentes</span></a></li>
+  </ul>
+  <div class="box purple"><h3>💬 ¿Cómo empezar a hablar?</h3>
+    <ol><li>Elige a alguien de confianza: familia, un amigo/a, un profesor/a u orientación escolar.</li>
+    <li>Busca un momento tranquilo. Puedes decir: «Últimamente no me he sentido bien y quiero contártelo».</li>
+    <li>No necesitas explicarlo perfecto. Con decir cómo te sientes es suficiente.</li>
+    <li>Si no te escuchan a la primera, inténtalo con otra persona.</li></ol></div>
+  <div class="box blue"><h3>👀 Señales a las que prestar atención</h3>
+    <p><b>Emocionales:</b> tristeza persistente, desesperanza, irritabilidad.<br><b>Físicas:</b> cansancio, cambios en el sueño o el apetito.<br><b>De conducta:</b> aislarte, perder el interés, bajar el rendimiento. Si duran más de dos semanas, habla con un profesional.</p></div>
+  <div class="box green"><h3>🤝 Si un amigo/a no está bien</h3>
+    <p>Escúchalo sin juzgar, no minimices lo que siente, pregúntale cómo puedes apoyarlo y ayúdale a hablar con un adulto. Si habla de hacerse daño, no guardes el secreto: avisa a un adulto de confianza.</p></div>
+  <p class="note">Más información: <a href="https://www.who.int/es/news-room/fact-sheets/detail/depression" target="_blank" rel="noopener">Depresión, datos de la OMS</a>. Verifica que los números sigan vigentes.</p>
+  <div class="row"><button class="btn" data-go="home">Volver al inicio</button></div>
+</section>
+<!-- 6. SISTEMATIZACIÓN DE DATOS -->
+<section id="stats" class="screen">
+  <h2 tabindex="-1">📊 Sistematización de datos</h2>
+  <p>Resumen de las respuestas anónimas guardadas en este dispositivo, o de un archivo CSV que cargues.</p>
+  <p class="only-print"><b>Informe general de resultados · CONÓCETE</b></p>
+  <div id="statsBox"></div>
+  <div class="row"><button class="btn" onclick="window.print()">🖨️ Imprimir informe</button><button class="btn green" id="dlCsv">Descargar CSV</button><label class="btn ghost">Cargar CSV<input type="file" id="loadCsv" accept=".csv" hidden></label><button class="btn ghost" id="clearData">Borrar datos</button></div>
+  <div class="row"><button class="btn" data-go="home">Volver al inicio</button></div>
+</section>
+</main>
+
+<footer>CONÓCETE · Proyecto de grado, Colegio Parroquial Bilingüe Santa Isabel de Hungría · Herramienta educativa, no reemplaza a un profesional de la salud.</footer>
+<script src="js/mascot.js"></script>
+<script src="js/data.js"></script>
+<script src="js/logic.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
