@@ -1,5 +1,5 @@
 /* SISTEMATIZACIÓN DE DATOS: guarda respuestas anónimas (con consentimiento), las resume y exporta. */
-const COLLECT_URL = "https://script.google.com/macros/s/AKfycbzo5Gowq3UMnRuVuN2hRoXUAor9OGcLUBPE7mqarmQuMcp3GAI2vBWrBRSZd9Kyzcdz/exec";        // Opcional: URL de Google Apps Script para reunir datos de todos los estudiantes (ver docs/RECOLECCION_GOOGLE_SHEETS.md)
+const COLLECT_URL = "https://script.google.com/macros/s/AKfycbxs4rOv4uHBOKDJk35J9xFP_20w2vY5qCL8OFjcrpdg7yiJnNdYuuAE1UNKoSmVNtcf/exec";        // Opcional: URL de Google Apps Script para reunir datos de todos los estudiantes (ver docs/RECOLECCION_GOOGLE_SHEETS.md)
 const CONSENT_DEFAULT = false; // true = casilla de consentimiento marcada de inicio (úsenlo solo si el colegio ya tiene autorización de acudientes)
 const KEYS = Object.keys(QUESTIONS).flatMap(a => QUESTIONS[a].map((_, i) => a + "_" + i));
 const HEAD = ["fecha","aspectos","nivel","porcentaje","alerta", ...KEYS];
