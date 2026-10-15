@@ -40,7 +40,8 @@ $("#prev").addEventListener("click", () => { if (st.i > 0){ st.i--; renderQ(); }
 function showResult(){
   const r = evaluate(st.list.map((q, k) => ({a:q.a, v:st.ans[k], alert:!!q.alert})));
   const R = RESULTS[r.level];
-  const rec = {f:new Date().toISOString().slice(0, 10), asp:[...st.sel], n:r.level, p:r.pct, al:r.alert ? 1 : 0, r:{}};
+  
+  const rec = {f: new Date().toLocaleString("es-CO"), asp:[...st.sel], n:r.level, p:r.pct, al:r.alert ? 1 : 0, r:{}};
   st.list.forEach((q, k) => { rec.r[q.a + "_" + q.i] = st.ans[k]; });
   ultimoResultadoActual = rec;
   const saved = $("#consent").checked; if (saved) saveRecord(rec);
