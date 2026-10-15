@@ -51,6 +51,7 @@ function showResult(){
   const R = RESULTS[r.level];
   const rec = {f:new Date().toISOString().slice(0, 10), asp:[...st.sel], n:r.level, p:r.pct, al:r.alert ? 1 : 0, r:{}};
   st.list.forEach((q, k) => { rec.r[q.a + "_" + q.i] = st.ans[k]; });
+  ultimoResultadoActual = rec;
   const saved = $("#consent").checked; if (saved) saveRecord(rec);
   const mine = `<details class="box blue"><summary><b>📋 Mi resumen de respuestas</b></summary><table class="tbl"><tr><th>Pregunta</th><th>Mi respuesta</th></tr>${st.list.map((q, k) => `<tr><td>${q.t}</td><td>${FACES[st.ans[k]]} ${q.o[st.ans[k]]}</td></tr>`).join("")}</table></details>`;
   const crisis = r.alert ? `<div class="alert"><b>No estás solo/a.</b> Si lo que sientes pesa mucho, habla hoy con un adulto de confianza o con orientación escolar. Puedes llamar gratis a la línea <a href="tel:106">106</a> (Bogotá, 24 h).</div>` : "";
@@ -81,9 +82,22 @@ const h1 = $("#home h1"), pal = ["--p","--b","--o","--g","--v","--p","--b","--o"
 h1.innerHTML = [...h1.textContent].map((c, i) => `<span style="color:var(${pal[i % pal.length]});animation-delay:${i*.08}s">${c}</span>`).join("");
 
 /* Sistematización: consentimiento, exportar, cargar y borrar */
+/* Sistematización: consentimiento, exportar, cargar y borrar */
 $("#consent").checked = CONSENT_DEFAULT;
-$("#dlCsv").addEventListener("click", () => { const d = viewData || getLocal(); if (!d.length) return alert("No hay datos para descargar.");
-  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob(["\ufeff" + toCSV(d)], {type:"text/csv"})); a.download = "conocete_datos.csv"; a.click(); });
+
+// Variable global temporal para almacenar únicamente la última respuesta del usuario actual
+let ultimoResultadoActual = null;
+
+$("#dlCsv").addEventListener("click", () => {
+  if (!ultimoResultadoActual) return alert("Aún no has completado la encuesta en esta sesión.");
+  
+  // Exportar únicamente los datos de la persona actual en formato CSV de una sola fila
+  const csvContent = "\ufeff" + HEAD.join(",") + "\n" + toRow(ultimoResultadoActual).join(",");
+  const a = document.createElement("a"); 
+  a.href = URL.createObjectURL(new Blob([csvContent], {type:"text/csv"})); 
+  a.download = "mis_resultados_conocete.csv"; 
+  a.click(); 
+});
 $("#loadCsv").addEventListener("change", e => { const f = e.target.files[0]; if (!f) return;
   f.text().then(t => { viewData = parseCSV(t); renderStats(); }); e.target.value = ""; });
 $("#clearData").addEventListener("click", () => { if (confirm("¿Borrar los datos guardados en este dispositivo?")){ try { localStorage.removeItem(STORE); } catch(e){} viewData = null; renderStats(); } });
